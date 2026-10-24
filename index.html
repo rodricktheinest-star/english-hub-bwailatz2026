@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bwaila Academic Arena - Elite English Mastery OS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-base: #030712;
+            --card-glass: rgba(13, 22, 40, 0.9);
+            --neon-gold: #ffb703;
+            --neon-blue: #00f3ff;
+            --neon-purple: #9d4edd;
+            --neon-green: #00ff88;
+            --neon-pink: #ff007f;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --border-glass: rgba(255, 183, 3, 0.4);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        body {
+            background-color: var(--bg-base);
+            background-image: 
+                radial-gradient(circle at 10% 10%, rgba(255, 183, 3, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 90% 90%, rgba(0, 243, 255, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 50% 50%, rgba(157, 78, 221, 0.1) 0%, transparent 50%);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 25px 15px;
+        }
+
+        .app-container {
+            width: 100%;
+            max-width: 680px;
+            background: var(--card-glass);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid var(--border-glass);
+            border-radius: 30px;
+            padding: 30px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85), 0 0 50px rgba(255, 183, 3, 0.2);
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            animation: fadeInApp 0.8s ease-out;
+        }
+
+        @keyframes fadeInApp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .brand-header {
+            text-align: center;
+            position: relative;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .avatar-wrapper {
+            display: inline-block;
+            position: relative;
+            margin-bottom: 12px;
+        }
+
+        .avatar-glow {
+            width: 115px;
+            height: 115px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--neon-gold);
+            box-shadow: 0 0 35px rgba(255, 183, 3, 0.6), inset 0 0 15px rgba(0, 243, 255, 0.4);
+            animation: floatLogo 3s ease-in-out infinite;
+        }
+
+        @keyframes floatLogo {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(2deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        .brand-title {
+            font-size: 27px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, var(--neon-gold), #ff8800, var(--neon-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+        }
+
+        .brand-sub {
+            font-size: 12px;
+            color: var(--text-muted);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-top: 4px;
+        }
+
+        .nav-tabs {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 6px;
+            background: rgba(255, 255, 255, 0.04);
+            padding: 6px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            padding: 10px 0;
+            font-size: 9px;
+            border-radius: 12px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            font-weight: bold;
+        }
+
+        .tab-btn i { font-size: 14px; }
+
+        .tab-btn.active {
+            background: rgba(255, 183, 3, 0.22);
+            color: var(--neon-gold);
+            border: 1px solid rgba(255, 183, 3, 0.5);
+            box-shadow: 0 0 15px rgba(255, 183, 3, 0.3);
+            transform: scale(1.03);
+        }
+
+        .tab-content {
+            display: none;
+            flex-direction: column;
+            gap: 20px;
+            animation: slideUp 0.4s ease-out;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .tab-content.active { display: flex; }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        label {
+            font-size: 11px;
+            color: var(--neon-gold);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            font-weight: 700;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 14px 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 14px;
+            color: var(--text-main);
+            font-size: 13px;
+            outline: none;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            border-color: var(--neon-gold);
+            box-shadow: 0 0 15px rgba(255, 183, 3, 0.3);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        select option { background-color: #0d1628; color: white; }
+
+        .ctrl-box {
+            background: linear-gradient(135deg, rgba(255, 183, 3, 0.15), rgba(0, 243, 255, 0.15));
+            border: 1px dashed var(--neon-gold);
+            border-radius: 16px;
+            padding: 18px;
+            text-align: center;
+            display: none;
+        }
+
+        .ctrl-number {
+            font-size: 24px;
+            font-weight: 900;
+            color: var(--neon-gold);
+            letter-spacing: 2.5px;
+            margin: 8px 0;
+        }
+
+        .btn-action {
+            background: linear-gradient(135deg, var(--neon-gold), #ff8800);
+            color: #000;
+            font-weight: 900;
+            padding: 15px;
+            border: none;
+            border-radius: 14px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            box-shadow: 0 0 20px rgba(255, 183, 3, 0.35);
+        }
+
+        .item-card {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 14px;
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .btn-sm {
+            padding: 8px 14px;
+            background: var(--neon-gold);
+            color: #000;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .motivation-card {
+            background: linear-gradient(135deg, rgba(157, 78, 221, 0.15), rgba(0, 243, 255, 0.15));
+            border: 1px solid var(--neon-purple);
+            border-radius: 18px;
+            padding: 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .quote-text {
+            font-size: 15px;
+            font-style: italic;
+            color: #e0aaff;
+            line-height: 1.6;
+        }
+
+        .chat-box {
+            height: 250px;
+            overflow-y: auto;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            background: rgba(0, 0, 0, 0.35);
+        }
+
+        .msg {
+            max-width: 85%;
+            padding: 10px 14px;
+            border-radius: 14px;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .msg.ai { background: rgba(0, 243, 255, 0.15); color: #b3f7ff; align-self: flex-start; }
+        .msg.user { background: rgba(255, 183, 3, 0.25); color: #ffe8b3; align-self: flex-end; }
+
+        .comment-item {
+            background: rgba(255, 255, 255, 0.03);
+            border-left: 3px solid var(--neon-blue);
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-size: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="app-container">
+    <div class="brand-header">
+        <div class="avatar-wrapper">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&auto=format&fit=crop" alt="Bwaila Administrator" class="avatar-glow">
+        </div>
+        <div class="brand-title">Bwaila Academic Arena</div>
+        <div class="brand-sub">Elite English Speaking & Digital Academy</div>
+    </div>
+
+    <div class="nav-tabs">
+        <button class="tab-btn active" onclick="switchTab('homeTab', this)">
+            <i class="fa-solid fa-house"></i> Home
+        </button>
+        <button class="tab-btn" onclick="switchTab('registerTab', this)">
+            <i class="fa-solid fa-user-plus"></i> Usajili
+        </button>
+        <button class="tab-btn" onclick="switchTab('arenaTab', this)">
+            <i class="fa-solid fa-book-open"></i> Arena & PDF
+        </button>
+        <button class="
